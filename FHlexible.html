@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FHlexible - Toastmasters Timer Pro</title>
+    <style>
+        :root {
+            --color-green: #00FF00;
+            --color-orange: #FF8C00;
+            --color-border: #333;
+            --color-bg-dark: #111;
+            --preset-title-size: clamp(1rem, 4.2vh, 6vw);
+        }
+
+        * {
+            font-family: 'Verdana', Geneva, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .brand-header {
+            color: var(--color-orange);
+            font-size: clamp(1.8rem, 4.2vh, 4rem);
+            text-align: center;
+            width: 100%;
+            padding-bottom: 0.5vh;
+            display: flex;
+            justify-content: center;
+            align-items: baseline; 
+            flex-shrink: 0;
+        }
+
+        .brand-part-1 { font-weight: bold; }
+        .brand-part-2 {
+            font-weight: normal;
+            font-size: 0.85em; 
+            line-height: 1;
+        }
+
+        #setup-screen {
+            background: var(--color-bg-dark);
+            padding: 1.5vh;
+            border-radius: 2vmin;
+            display: flex;
+            flex-direction: column;
+            border: 0.5vmin solid var(--color-border);
+            width: 98vw;
+            height: 98vh;
+            max-width: 1200px;
+            overflow: hidden;
+        }
+
+        .main-layout {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            flex: 1;
+            min-height: 0; 
+        }
+
+        .section-header {
+            color: #444;
+            font-size: clamp(1.1rem, 2.8vh, 2rem); 
+            text-transform: uppercase;
+            text-align: center;
+            border-bottom: 2px solid #222;
+            margin-bottom: 0.8vh;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .presets-box {
+            border-right: 1px solid var(--color-border);
+            padding-right: 15px;
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            height: 100%;
+        }
+
+        .presets-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8vh;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .preset-btn {
+            background: #000;
+            color: var(--color-green);
+            border: clamp(2px, 0.4vmin, 6px) solid var(--color-green);
+            cursor: pointer;
+            border-radius: 1.5vmin;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            flex: 1;
+            padding: 0.5vh; 
+        }
+
+        .p-label { font-size: var(--preset-title-size); font-weight: bold; white-space: nowrap; }
+        .p-time { font-size: calc(var(--preset-title-size) * 0.5); opacity: 0.8; }
+
+        .manual-entry {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            height: 100%;
+            min-height: 0;
+            justify-content: space-between;
+        }
+
+        .input-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0.5vh 0;
+        }
+
+        .input-wrap {
+            display: flex;
+            align-items: center; 
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        input {
+            width: 42%;
+            height: auto;
+            max-height: 22vh;
+            padding: 1vh 0;
+            background: #000;
+            color: #fff;
+            border: 2px solid #555;
+            border-radius: 2vmin;
+            text-align: center;
+            font-size: min(12vw, 15vh);
+            outline: none;
+            font-weight: bold;
+        }
+
+        #start-button {
+            background: var(--color-green);
+            color: black;
+            border: none;
+            height: clamp(50px, 10vh, 100px);
+            font-size: clamp(1.5rem, 6vh, 4rem);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2vmin;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .timer-container {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+
+        .timer-content { 
+            font-size: min(28vw, 65vh); 
+            line-height: 1; 
+            font-weight: bold;
+        }
+
+        #return-button {
+            position: absolute;
+            top: 2vh;
+            left: 2vw;
+            font-size: 3rem;
+            color: #222;
+            cursor: pointer;
+            z-index: 100;
+            display: none;
+        }
+
+        @media (orientation: portrait) {
+            #setup-screen { padding: 1vh; }
+            .main-layout { flex-direction: column; gap: 8px; overflow: hidden; }
+            .presets-box { 
+                border-right: none; 
+                border-bottom: 1px solid var(--color-border); 
+                width: 100%; 
+                height: 42%; 
+                padding-right: 0; 
+                padding-bottom: 5px; 
+            }
+            .manual-entry { height: 58%; }
+            .input-area { margin: 0; }
+            .input-wrap { height: auto; margin: 1vh 0; }
+            input { font-size: min(18vw, 10vh); padding: 0.5vh 0; }
+            #start-button { height: 9vh; font-size: 4.5vh; }
+            .section-header { font-size: 2.2vh; margin-bottom: 0.4vh; }
+            .p-label { font-size: 3.2vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="return-button" onclick="resetToMenu()">↺</div>
+    
+    <div id="setup-screen">
+        <div class="brand-header">
+            <span class="brand-part-1">FH</span><span class="brand-part-2">lexible</span>
+        </div>
+        
+        <div class="main-layout">
+            <div class="presets-box">
+                <h1 class="section-header">Presets</h1>
+                <div class="presets-list">
+                    <button class="preset-btn" onclick="applyPreset(2, 30)">
+                        <span class="p-label">TABLE TOPIC</span>
+                        <span class="p-time">2:30 MAX</span>
+                    </button>
+                    <button class="preset-btn" onclick="applyPreset(3, 30)">
+                        <span class="p-label">EVALUATION</span>
+                        <span class="p-time">3:30 MAX</span>
+                    </button>
+                    <button class="preset-btn" onclick="applyPreset(7, 30)">
+                        <span class="p-label">PREPARED</span>
+                        <span class="p-time">7:30 MAX</span>
+                    </button>
+                    <button class="preset-btn" style="color: #666; border-color: #444;" onclick="applyPreset(0, 5)">
+                        <span class="p-label">QUICK TEST</span>
+                        <span class="p-time">0:05 SEC</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="manual-entry">
+                <h1 class="section-header">Custom</h1>
+                <div class="input-area">
+                    <div class="input-wrap">
+                        <input type="text" inputmode="numeric" id="minutes-input" value="00" onfocus="this.select()">
+                        <div style="font-size: clamp(1.5rem, 6vh, 6rem); font-weight: bold; padding: 0 5px;">:</div>
+                        <input type="text" inputmode="numeric" id="seconds-input" value="00" onfocus="this.select()">
+                    </div>
+                </div>
+                <button id="start-button" onclick="startTimer()">START</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="timer-wrapper" class="timer-container">
+        <div class="timer-content">
+            <span id="minutes-display">00</span><span>:</span><span id="seconds-display">00</span>
+        </div>
+    </div>
+
+    <script>
+        let totalSeconds, isOvertime = false, timerInterval;
+        
+        const minutesInput = document.getElementById('minutes-input');
+        const secondsInput = document.getElementById('seconds-input');
+        const setupScreen = document.getElementById('setup-screen');
+        const timerWrapper = document.getElementById('timer-wrapper');
+        const returnButton = document.getElementById('return-button');
+        const minutesDisplay = document.getElementById('minutes-display');
+        const secondsDisplay = document.getElementById('seconds-display');
+
+        [minutesInput, secondsInput].forEach(inputField => {
+            inputField.addEventListener('input', () => {
+                inputField.value = inputField.value.replace(/\D/g, '').slice(0, 2);
+            });
+        });
+
+        function applyPreset(minutes, seconds) {
+            minutesInput.value = minutes.toString().padStart(2, '0');
+            secondsInput.value = seconds.toString().padStart(2, '0');
+            startTimer();
+        }
+
+        function startTimer() {
+            const minutes = parseInt(minutesInput.value) || 0;
+            const seconds = parseInt(secondsInput.value) || 0;
+            
+            if (minutes === 0 && seconds === 0) return;
+
+            totalSeconds = (minutes * 60) + seconds;
+            isOvertime = false;
+            
+            toggleView(true);
+            updateUI();
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(runTimerLogic, 1000);
+        }
+
+        function runTimerLogic() {
+            if (!isOvertime) {
+                totalSeconds--;
+                if (totalSeconds < 0) {
+                    isOvertime = true;
+                    totalSeconds = 1;
+                }
+            } else {
+                totalSeconds++;
+            }
+            updateUI();
+        }
+
+        function resetToMenu() {
+            clearInterval(timerInterval);
+            toggleView(false);
+            
+            timerWrapper.style.color = "var(--color-green)";
+            minutesInput.value = "00";
+            secondsInput.value = "00";
+        }
+
+        function toggleView(isTimerActive) {
+            setupScreen.style.display = isTimerActive ? 'none' : 'flex';
+            returnButton.style.display = isTimerActive ? 'block' : 'none';
+            timerWrapper.style.display = isTimerActive ? 'flex' : 'none';
+        }
+
+        function updateUI() {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            
+            minutesDisplay.innerText = minutes.toString().padStart(2, '0');
+            secondsDisplay.innerText = seconds.toString().padStart(2, '0');
+            
+            timerWrapper.style.color = isOvertime ? "#FF0000" : "var(--color-green)";
+        }
+    </script>
+</body>
+</html>
