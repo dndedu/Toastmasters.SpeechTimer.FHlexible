@@ -10,7 +10,7 @@
             --color-orange: #FF8C00;
             --color-border: #333;
             --color-bg-dark: #111;
-            --preset-title-size: clamp(1rem, 4.2vh, 6vw);
+            --preset-title-size: clamp(0.9rem, 3.5vh, 6vw);
         }
 
         * {
@@ -18,6 +18,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -26,7 +27,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 100dvh;
             width: 100vw;
             overflow: hidden;
             user-select: none;
@@ -34,7 +35,7 @@
 
         .brand-header {
             color: var(--color-orange);
-            font-size: clamp(1.8rem, 4.2vh, 4rem);
+            font-size: clamp(1.5rem, 4vh, 3.5rem);
             text-align: center;
             width: 100%;
             padding-bottom: 0.5vh;
@@ -45,21 +46,17 @@
         }
 
         .brand-part-1 { font-weight: bold; }
-        .brand-part-2 {
-            font-weight: normal;
-            font-size: 0.85em; 
-            line-height: 1;
-        }
+        .brand-part-2 { font-weight: normal; font-size: 0.85em; line-height: 1; }
 
         #setup-screen {
             background: var(--color-bg-dark);
-            padding: 1.5vh;
+            padding: 1vh;
             border-radius: 2vmin;
             display: flex;
             flex-direction: column;
             border: 0.5vmin solid var(--color-border);
             width: 98vw;
-            height: 98vh;
+            height: 96dvh;
             max-width: 1200px;
             overflow: hidden;
         }
@@ -67,25 +64,25 @@
         .main-layout {
             display: flex;
             flex-direction: row;
-            gap: 15px;
+            gap: 12px;
             flex: 1;
             min-height: 0; 
         }
 
         .section-header {
             color: #444;
-            font-size: clamp(1.1rem, 2.8vh, 2rem); 
+            font-size: clamp(0.9rem, 2.2vh, 1.8rem); 
             text-transform: uppercase;
             text-align: center;
-            border-bottom: 2px solid #222;
-            margin-bottom: 0.8vh;
+            border-bottom: 1px solid #222;
+            margin-bottom: 0.5vh;
             font-weight: bold;
             flex-shrink: 0;
         }
 
         .presets-box {
             border-right: 1px solid var(--color-border);
-            padding-right: 15px;
+            padding-right: 10px;
             display: flex;
             flex-direction: column;
             width: 40%;
@@ -95,7 +92,7 @@
         .presets-list {
             display: flex;
             flex-direction: column;
-            gap: 0.8vh;
+            gap: 0.5vh;
             flex: 1;
             min-height: 0;
         }
@@ -103,19 +100,20 @@
         .preset-btn {
             background: #000;
             color: var(--color-green);
-            border: clamp(2px, 0.4vmin, 6px) solid var(--color-green);
+            border: clamp(1px, 0.3vmin, 4px) solid var(--color-green);
             cursor: pointer;
-            border-radius: 1.5vmin;
+            border-radius: 1vmin;
             display: flex;
             flex-direction: column;
             align-items: center; 
             justify-content: center;
             flex: 1;
-            padding: 0.5vh; 
+            min-height: 0;
+            padding: 2px;
         }
 
-        .p-label { font-size: var(--preset-title-size); font-weight: bold; white-space: nowrap; }
-        .p-time { font-size: calc(var(--preset-title-size) * 0.5); opacity: 0.8; }
+        .p-label { font-size: var(--preset-title-size); font-weight: bold; }
+        .p-time { font-size: calc(var(--preset-title-size) * 0.6); opacity: 0.8; }
 
         .manual-entry {
             display: flex;
@@ -131,96 +129,128 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin: 0.5vh 0;
+            min-height: 0;
         }
 
         .input-wrap {
             display: flex;
             align-items: center; 
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
             width: 100%;
         }
 
         input {
-            width: 42%;
-            height: auto;
-            max-height: 22vh;
-            padding: 1vh 0;
+            width: 44%;
             background: #000;
             color: #fff;
             border: 2px solid #555;
-            border-radius: 2vmin;
+            border-radius: 1.5vmin;
             text-align: center;
-            font-size: min(12vw, 15vh);
+            font-size: min(12vw, 12vh);
             outline: none;
             font-weight: bold;
+            padding: 5px 0;
         }
 
         #start-button {
             background: var(--color-green);
             color: black;
             border: none;
-            height: clamp(50px, 10vh, 100px);
-            font-size: clamp(1.5rem, 6vh, 4rem);
+            height: clamp(45px, 9vh, 90px);
+            font-size: clamp(1.2rem, 5vh, 3.5rem);
             font-weight: bold;
             cursor: pointer;
-            border-radius: 2vmin;
+            border-radius: 1.5vmin;
             text-transform: uppercase;
             flex-shrink: 0;
+            margin-top: 5px;
         }
 
         .timer-container {
             display: none;
             width: 100vw;
-            height: 100vh;
+            height: 100dvh;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             background: black;
+            cursor: pointer;
         }
 
         .timer-content { 
-            font-size: min(28vw, 65vh); 
+            font-size: min(28vw, 60vh); 
             line-height: 1; 
             font-weight: bold;
+            pointer-events: none;
         }
 
-        #return-button {
-            position: absolute;
-            top: 2vh;
-            left: 2vw;
-            font-size: 3rem;
-            color: #222;
-            cursor: pointer;
-            z-index: 100;
-            display: none;
+        /* NEW CSS-ONLY CONTROLS (Replacing Emojis) */
+        #control-display {
+            margin-top: 4vh;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
         }
+
+        .icon-pause {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-pause div {
+            width: 12px;
+            height: 45px;
+            background-color: #222;
+        }
+
+        .icon-play {
+            width: 0;
+            height: 0;
+            border-top: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            border-left: 40px solid #222;
+            margin-left: 10px;
+        }
+
+        #return-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25vw;
+            height: 25vh;
+            display: none;
+            z-index: 100;
+            padding: 2vh 2vw;
+            cursor: pointer;
+        }
+
+        #return-icon { font-size: 2.5rem; color: #222; }
 
         @media (orientation: portrait) {
-            #setup-screen { padding: 1vh; }
-            .main-layout { flex-direction: column; gap: 8px; overflow: hidden; }
+            .main-layout { flex-direction: column; gap: 5px; }
             .presets-box { 
                 border-right: none; 
                 border-bottom: 1px solid var(--color-border); 
                 width: 100%; 
-                height: 42%; 
+                height: 40%; 
                 padding-right: 0; 
                 padding-bottom: 5px; 
             }
-            .manual-entry { height: 58%; }
-            .input-area { margin: 0; }
-            .input-wrap { height: auto; margin: 1vh 0; }
-            input { font-size: min(18vw, 10vh); padding: 0.5vh 0; }
-            #start-button { height: 9vh; font-size: 4.5vh; }
-            .section-header { font-size: 2.2vh; margin-bottom: 0.4vh; }
-            .p-label { font-size: 3.2vh; }
+            .manual-entry { height: 60%; }
+            input { font-size: min(15vw, 8vh); }
+            #start-button { height: 8vh; font-size: 4vh; }
         }
     </style>
 </head>
 <body>
 
-    <div id="return-button" onclick="resetToMenu()">↺</div>
+    <div id="return-zone" onclick="resetToMenu(event)">
+        <div id="return-icon">↺</div>
+    </div>
     
     <div id="setup-screen">
         <div class="brand-header">
@@ -243,7 +273,7 @@
                         <span class="p-label">PREPARED</span>
                         <span class="p-time">7:30 MAX</span>
                     </button>
-                    <button class="preset-btn" style="color: #666; border-color: #444;" onclick="applyPreset(0, 5)">
+                    <button class="preset-btn" style="color: #666; border-color: #333;" onclick="applyPreset(0, 5)">
                         <span class="p-label">QUICK TEST</span>
                         <span class="p-time">0:05 SEC</span>
                     </button>
@@ -255,7 +285,7 @@
                 <div class="input-area">
                     <div class="input-wrap">
                         <input type="text" inputmode="numeric" id="minutes-input" value="00" onfocus="this.select()">
-                        <div style="font-size: clamp(1.5rem, 6vh, 6rem); font-weight: bold; padding: 0 5px;">:</div>
+                        <div style="font-size: clamp(1rem, 5vh, 5rem); font-weight: bold;">:</div>
                         <input type="text" inputmode="numeric" id="seconds-input" value="00" onfocus="this.select()">
                     </div>
                 </div>
@@ -264,22 +294,28 @@
         </div>
     </div>
 
-    <div id="timer-wrapper" class="timer-container">
+    <div id="timer-wrapper" class="timer-container" onclick="togglePause()">
         <div class="timer-content">
             <span id="minutes-display">00</span><span>:</span><span id="seconds-display">00</span>
         </div>
+        <div id="control-display">
+            </div>
     </div>
 
     <script>
-        let totalSeconds, isOvertime = false, timerInterval;
+        let totalSeconds, isOvertime = false, timerInterval, isPaused = false;
         
         const minutesInput = document.getElementById('minutes-input');
         const secondsInput = document.getElementById('seconds-input');
         const setupScreen = document.getElementById('setup-screen');
         const timerWrapper = document.getElementById('timer-wrapper');
-        const returnButton = document.getElementById('return-button');
+        const returnZone = document.getElementById('return-zone');
+        const controlDisplay = document.getElementById('control-display');
         const minutesDisplay = document.getElementById('minutes-display');
         const secondsDisplay = document.getElementById('seconds-display');
+
+        const PAUSE_HTML = '<div class="icon-pause"><div></div><div></div></div>';
+        const PLAY_HTML = '<div class="icon-play"></div>';
 
         [minutesInput, secondsInput].forEach(inputField => {
             inputField.addEventListener('input', () => {
@@ -296,11 +332,12 @@
         function startTimer() {
             const minutes = parseInt(minutesInput.value) || 0;
             const seconds = parseInt(secondsInput.value) || 0;
-            
             if (minutes === 0 && seconds === 0) return;
 
             totalSeconds = (minutes * 60) + seconds;
             isOvertime = false;
+            isPaused = false;
+            controlDisplay.innerHTML = PAUSE_HTML;
             
             toggleView(true);
             updateUI();
@@ -310,22 +347,25 @@
         }
 
         function runTimerLogic() {
+            if (isPaused) return;
             if (!isOvertime) {
                 totalSeconds--;
-                if (totalSeconds < 0) {
-                    isOvertime = true;
-                    totalSeconds = 1;
-                }
+                if (totalSeconds < 0) { isOvertime = true; totalSeconds = 1; }
             } else {
                 totalSeconds++;
             }
             updateUI();
         }
 
-        function resetToMenu() {
+        function togglePause() {
+            isPaused = !isPaused;
+            controlDisplay.innerHTML = isPaused ? PLAY_HTML : PAUSE_HTML;
+        }
+
+        function resetToMenu(event) {
+            event.stopPropagation();
             clearInterval(timerInterval);
             toggleView(false);
-            
             timerWrapper.style.color = "var(--color-green)";
             minutesInput.value = "00";
             secondsInput.value = "00";
@@ -333,17 +373,15 @@
 
         function toggleView(isTimerActive) {
             setupScreen.style.display = isTimerActive ? 'none' : 'flex';
-            returnButton.style.display = isTimerActive ? 'block' : 'none';
+            returnZone.style.display = isTimerActive ? 'block' : 'none';
             timerWrapper.style.display = isTimerActive ? 'flex' : 'none';
         }
 
         function updateUI() {
             const minutes = Math.floor(totalSeconds / 60);
             const seconds = totalSeconds % 60;
-            
             minutesDisplay.innerText = minutes.toString().padStart(2, '0');
             secondsDisplay.innerText = seconds.toString().padStart(2, '0');
-            
             timerWrapper.style.color = isOvertime ? "#FF0000" : "var(--color-green)";
         }
     </script>
