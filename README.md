@@ -5,5 +5,5 @@ Option #2: Copy and Paste the code in an Editor of your choice and save it as .h
 <strong>Current functionality:</strong><br/>
 Individual and preset common Toastmaster times run down to zero (00:00; format mm:ss) in green color after which the additional time needed for the (current version of the) speech is measured in red.
 
-The time can be paused and continued by clicking on the major part of the displayed timer.
+The time can be paused and continued by clicking on the major part of the displayed timer.<br/>
 In the upper left corner another clickable field allows returning to the default start page.
