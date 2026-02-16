@@ -1,4 +1,4 @@
-To run it:<br/>
+<strong>To run it:</strong><br/>
 Option #1: Download the "FHlexible.html" file ( permalink: https://github.com/dndedu/Toastmasters.SpeechTimer.FHlexible/blob/3e0deca0c485595ae323b59c919df39876e52c37/FHlexible.html ) , e.g. using the three dot menu at the top right corner.
 Option #2: Copy and Paste the code in an Editor of your choice and save it as .html.
 
